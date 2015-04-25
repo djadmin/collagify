@@ -1,0 +1,30 @@
+{
+  "name": "Collagify",
+  "version": "1.0.0",
+  "description": "Make awesome collages with your photos in easy steps.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djadmin/collagify.git"
+  },
+  "keywords": [
+    "Collage"
+  ],
+  "author": "Dheeraj Joshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djadmin/collagify/issues"
+  },
+  "homepage": "https://github.com/djadmin/collagify",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt-bower-concat": "^0.4.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-uglify": "^0.9.1"
+  }
+}
