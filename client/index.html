@@ -31,8 +31,12 @@
             Making awesome collages was never so easy !
         </p>
         <div class="banner row">
-            <div class="workspace-cont">
-                <canvas id="workspace" width="900" height="400" style="border:1px solid #000000;">
+            <div class="workspace-tools">
+                <div class="tool"><a id="saveBtn"><i class="fa fa-download fa-2x" title="Save"></i></a></div>
+                <div class="tool"><a id="clearBtn"><i class="fa fa-eraser fa-2x" title="Clear"></i></a></div>
+            </div>
+            <div class="workspace-cont" id="workspace-cont" >
+                <canvas id="workspace" class="workspace" height="400">
                     It seems your browser doesn't support HTML5 Canvas.
                 </canvas>
             </div>
@@ -51,9 +55,6 @@
             <p class="text-muted">Made with <i class="fa fa-heart"></i> by <a href="http://twitter.com/dheerajhere" target="_blank">Dheeraj Joshi</a></p>
         </div>
     </footer>
-    <script>
-    	app.init();
-    </script>
 </body>
 
 </html>

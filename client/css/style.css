@@ -91,3 +91,33 @@ body {
 #uploadBtn {
   /*display: none;*/
 }
+
+.workspace-cont {
+  box-shadow: rgba(0,0,0,0.5) 0 0 5px;
+  width: 95%;
+}
+
+.workspace {
+  border: none;
+}
+
+.canvas-container {
+  width: 100%;
+}
+
+.workspace-tools {
+  float: right;
+}
+
+.workspace-tools .tool {
+  padding: 4px;
+  cursor: pointer;
+}
+
+#saveBtn {
+  color: #50A5ED;
+}
+
+#clearBtn {
+  color: #EA6B6B;
+}

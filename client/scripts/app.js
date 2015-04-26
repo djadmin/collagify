@@ -1,6 +1,7 @@
+var canvas;
 var app = (function() {
 
-    var canvas;
+
 
     function getGalleryImages() {
         // Mocking Data
@@ -39,53 +40,33 @@ var app = (function() {
     }
 
     function constructGalleryImages() {
-    	var data = getGalleryImages();
-    	var baseUrl = data && data.hasOwnProperty('baseUrl') ? data.baseUrl : "";
-    	var images = data && data.hasOwnProperty('images') ? data.images : [];
-    	var count = 10 || images.length; //@change
-    	var list = document.createElement('ul');
-    	for (var i = 0; i < count; i++) {
-    		var imgContainer = document.createElement('li');
-    		var img = document.createElement('img');
-    		//Set Image source
-    		if (images[i]) {
-    			var url = baseUrl + (images[i].hasOwnProperty('name') ? images[i].name : "");
-    			var title = images[i].hasOwnProperty('title') ? images[i].title : "";
-    			img.setAttribute("src", url);
-    			img.setAttribute("title", title);
-    			img.setAttribute("draggable", true);
-    		}
-    		imgContainer.appendChild(img);
-    		list.appendChild(imgContainer);
-    	}
-    	return list;
+        var data = getGalleryImages();
+        var baseUrl = data && data.hasOwnProperty('baseUrl') ? data.baseUrl : "";
+        var images = data && data.hasOwnProperty('images') ? data.images : [];
+        var count = 10 || images.length; //@change
+        var list = document.createElement('ul');
+        for (var i = 0; i < count; i++) {
+            var imgContainer = document.createElement('li');
+            var img = document.createElement('img');
+            //Set Image source
+            if (images[i]) {
+                var url = baseUrl + (images[i].hasOwnProperty('name') ? images[i].name : "");
+                var title = images[i].hasOwnProperty('title') ? images[i].title : "";
+                img.setAttribute("src", url);
+                img.setAttribute("title", title);
+                img.setAttribute("draggable", true);
+            }
+            imgContainer.appendChild(img);
+            list.appendChild(imgContainer);
+        }
+        return list;
 
     }
 
     function loadGalleryImages() {
-    	var images = constructGalleryImages();
-    	var obj = document.getElementById('gallery-list');
-    	images && obj.appendChild(images);
-    }
-
-    function fabricTest2() {
-        fabric.Image.fromURL('my_image.png', function(oImg) {
-          // scale image down, and flip it, before adding it onto canvas
-          oImg.scale(0.5).setFlipX(true);
-          canvas.add(oImg);
-        });
-    }
-
-    function fabricTest() {
-        var canvas = new fabric.Canvas('workspace');
-        var imgElement = document.getElementById('img-1');
-        var imgInstance = new fabric.Image(imgElement, {
-            left: 100,
-            top: 100,
-            angle: 0,
-            opacity: 1
-        });
-        canvas.add(imgInstance);
+        var images = constructGalleryImages();
+        var obj = document.getElementById('gallery-list');
+        images && obj.appendChild(images);
     }
 
     function drawOnCanvas() {
@@ -95,12 +76,12 @@ var app = (function() {
     }
 
     function getWorkSpace() {
-    	return document.getElementById('workspace');
-    	// return canvas;
+        return document.getElementById('workspace');
+        // return canvas;
     }
 
     function getWorkSpaceContext() {
-    	var workspace = getWorkSpace();
+        var workspace = getWorkSpace();
         return workspace && workspace.getContext("2d");
     }
 
@@ -111,12 +92,12 @@ var app = (function() {
     function bindImageUpload() {
 
         function loadImage(src) {
-            //	Prevent any non-image file type from being read.
+            //  Prevent any non-image file type from being read.
             if (!src.type.match(/image.*/)) {
                 return;
             }
 
-            //	Create our FileReader and run the results through the render function.
+            //  Create our FileReader and run the results through the render function.
             var reader = new FileReader();
             reader.onload = function(e) {
                 render(e.target.result);
@@ -125,7 +106,7 @@ var app = (function() {
         }
 
         function bindUploadBtn() {
-            
+
 
         }
 
@@ -154,139 +135,170 @@ var app = (function() {
         reader.onload = onImage
     }
 
-    //@Deprecated
-  /*  function addImgToWorkSpace(src, x, y) {
-    	var ctx = getWorkSpaceContext();
-    	var img = new Image();
-    	img.addEventListener('load', function() {
-    		ctx.drawImage(img, x, y);
-    	}, false);
-    	img.src = src;
-    }*/
-
     function addImageToWorkSpace(src, x, y) {
-    	var canvas = new fabric.Canvas('workspace');
-    	fabric.Image.fromURL(src, function(oImg) {
-    	  // scale image down, and flip it, before adding it onto canvas
-    	  // oImg.scale(0.5).setFlipX(true);
-    	  oImg.set({
-    	  	left: x,
-    	  	top: y,
-    	  	angle: 0,
-    	  	opacity: 1
-    	  });
-    	  canvas.add(oImg);
-    	});
+        fabric.Image.fromURL(src, function(oImg) {
+            x = x || 0;
+            y = y || 0;
+            oImg.set({
+                left: x,
+                top: y,
+                angle: 0,
+                opacity: 1,
+                 originX: 'left', originY: 'top',
+                 borderColor: 'blue',
+                 cornerColor: 'blue',
+                 cornerSize: 6,
+                 transparentCorners: false
+            });
+
+            canvas.add(oImg); //.setActiveObject(oImg);
+        });
     }
 
     function bindGalleryEvents() {
 
-    	function startDrag(e) {
-    		var imageSrc = this.src;
-    		// e.dataTransfer.setData('image', this);
-    		e.dataTransfer.setData('text/plain', imageSrc);
-    	}
+        function startDrag(e) {
+            var imageSrc = this.src;
+            // e.dataTransfer.setData('image', this);
+            e.dataTransfer.setData('text/plain', imageSrc);
+        }
 
-    	function doDragOver(e) {
-    		e.preventDefault();
-    	}
+        function doDragOver(e) {
+            e.preventDefault();
+        }
 
-    	function doDrop(e) {
-    		e.preventDefault();
-    		// var img = e.dataTransfer.getData('image');
-    		var imageSrc = e.dataTransfer.getData('text/plain');
-    	}
+        function doDrop(e) {
+            e.preventDefault();
+            var imageSrc = e.dataTransfer.getData('text/plain');
+        }
 
-    	function doDblClick(e) {
-    		var imageSrc = e.target.src;
-    		// addImageToWorkSpace(imageSrc, 0, 0);
-    		
-    		// Temp
-    		// var canvas = new fabric.Canvas('workspace');
-    		fabric.Image.fromURL(imageSrc, function(oImg) {
-    			oImg.set({left: 0, top: 0});
-    		  canvas.add(oImg);
-    		});
-    	}
+        function doDblClick(e) {
+            var imageSrc = e.target.src;
+            addImageToWorkSpace(imageSrc, 0, 0);
+        }
 
-    	var images = document.querySelectorAll('#gallery-list ul li img');
-    	var len = images.length;
-    	for (var i = 0; i < len; i++) {
-    		var img = images[i];
-    		img.addEventListener('dragstart', startDrag);
-    		img.addEventListener('dragover', doDragOver);
-    		img.addEventListener('drop', doDrop);
-    		img.addEventListener('dblclick', doDblClick);
-    	}
+        var images = document.querySelectorAll('#gallery-list ul li img');
+        var len = images.length;
+        for (var i = 0; i < len; i++) {
+            var img = images[i];
+            img.addEventListener('dragstart', startDrag);
+            img.addEventListener('dragover', doDragOver);
+            img.addEventListener('drop', doDrop);
+            img.addEventListener('dblclick', doDblClick);
+        }
     }
 
     function bindCanvasEvents() {
+        function doDragOver(e) {
+            e.preventDefault();
+        }
 
-    	function doDragOver(e) {
-    		e.preventDefault();
-    	}
+        function doDrop(e) {
+                e.preventDefault();
+                var imageSrc = e.dataTransfer.getData('text/plain');
+                var posX = e.x;
+                var posY = e.y;
+                posX = e.layerX - $(e.target).position().left;
+                posY = e.layerY - $(e.target).position().top;
+                addImageToWorkSpace(imageSrc, posX, posY);
+            }
 
-    	function doDrop(e) {
-    		e.preventDefault();
-    		var imageSrc = e.dataTransfer.getData('text/plain');
-    		var posX = e.x;
-    		var posY = e.y;
-    		// posX = e.layerX - $(e.target).position().left;
-			// posY = e.layerY - $(e.target).position().top;
-    		addImageToWorkSpace(imageSrc, posX, posY);
-    	}
-    	var workspace = getWorkSpace();
-    	workspace.addEventListener('dragover', doDragOver);
-    	workspace.addEventListener('drop', doDrop);
+        var other = document.getElementsByClassName('upper-canvas')[0];
+        console.log(other);
+        other.addEventListener('dragover', doDragOver);
+        other.addEventListener('drop', doDrop);
 
-    	// var other = document.getElementsByClassName('upper-canvas')[0];
-    	// other.addEventListener('dragover', doDragOver);
-    	// other.addEventListener('drop', doDrop);
+        canvas.on({
+            'object:moving': function(e) {
+                e.target.opacity = 0.7
+            },
+            'object:modified': function(e) {
+                e.target.opacity = 1;
+            }
+        });
+
     }
 
     function bindDragDropEvents() {
-    	bindGalleryEvents();
-    	bindCanvasEvents();
-    }
-
-    function fabricTest3() {
-    	canvas = new fabric.Canvas('workspace');
-    		fabric.Image.fromURL("images/pic1.jpg", function(oImg) {
-    			oImg.set({left: 0, top: 0});
-    		  canvas.add(oImg);
-    		});
+        bindGalleryEvents();
+        bindCanvasEvents();
     }
 
 
-    function removeActiveObject() {
-    	var activeObj = canvas.getActiveObject();
-    	if (activeObj) {
-    		canvas.remove(activeObj);
-    	}
+    function resizeCanvas() {
+      canvas.setWidth(document.getElementById('workspace-cont').offsetWidth);
+      canvas.renderAll();
+    }
+
+    function initializeCanvas() {
+        canvas = new fabric.Canvas('workspace', {
+            backgroundColor: "#F3FCFA",
+            hoverCursor: 'pointer'
+        });
+        window.addEventListener('resize', resizeCanvas, false);
+        // resize on init
+        resizeCanvas();
+    }
+
+    function removeActiveObject(e) {
+        var activeObj = canvas.getActiveObject();
+        if (activeObj) {
+            e.preventDefault();
+            canvas.remove(activeObj);
+        }
     }
 
     function keyDownHandler(e) {
-    	var key = e.keyCode;
-    	if (key === 46 || key === 8) { // Delete Key
-    		removeActiveObject();
-    	}
+        var key = e.keyCode;
+        if (key === 46 || key === 8) { // Capture Delete Key
+            removeActiveObject(e);
+        }
     }
 
     function bindKeyListeners() {
-    	document.onkeydown = keyDownHandler;
+        document.onkeydown = keyDownHandler;
+    }
+
+    function bindButtonListeners() {
+
+        function bindSave() {
+            var dataUrl = canvas.toDataURL("");
+            this.href = dataUrl;
+            this.download = "MyCanvas.jpg";
+        }
+
+        function bindClear() {
+            canvas.clear();
+        }
+
+        var save = document.getElementById('saveBtn');
+        save.addEventListener('click', bindSave);
+        
+        var clear = document.getElementById('clearBtn');
+        clear.addEventListener('click', bindClear);
+    } 
+
+    function bindEvents() {
+        // bindImageUpload();
+        bindDragDropEvents();
+        bindKeyListeners();
+        bindButtonListeners();
     }
 
     function init() {
-        // bindImageUpload();
+        initializeCanvas();
         loadGalleryImages();
-        bindDragDropEvents();
-        bindKeyListeners();
-        // drawOnCanvas();
-        // fabricTest2();
-        fabricTest3();
+        bindEvents();
     }
 
     return {
         init: init
     }
+})();
+
+(function() {
+    function init() {
+        app.init();
+    }
+    window.addEventListener("load", init, false);
 })();
