@@ -232,7 +232,7 @@ var app = (function() {
 
     function initializeCanvas() {
         canvas = new fabric.Canvas('workspace', {
-            backgroundColor: "#F3FCFA",
+            backgroundColor: "#fff",
             hoverCursor: 'pointer'
         });
         window.addEventListener('resize', resizeCanvas, false);
@@ -279,13 +279,18 @@ var app = (function() {
         
         var clear = document.getElementById('clearBtn');
         clear.addEventListener('click', bindClear);
-    } 
+    }
+
+    function bindToolTip() {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
 
     function bindEvents() {
         // bindImageUpload();
         bindDragDropEvents();
         bindKeyListeners();
         bindButtonListeners();
+        bindToolTip();
     }
 
     function init() {
