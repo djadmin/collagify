@@ -268,7 +268,10 @@ var app = (function() {
         }
 
         function bindClear() {
-            canvas.clear();
+            $("#clearConfirmModal").modal('show');
+            $("#clearConfirmModal #delete").one('click', function() {
+                canvas.clear();
+            });
         }
 
         var save = document.getElementById('saveBtn');
