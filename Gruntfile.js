@@ -1,49 +1,60 @@
 module.exports = function(grunt) {
 
+    var publicDir = 'public';
+
+    var globalConfig = {
+        src: publicDir + '',
+        dist: publicDir + '/dist',
+        vendor: publicDir + '/vendor'
+    };
+
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+
+        globalConfig: globalConfig,
+
+        bower: grunt.file.readJSON('./.bowerrc'),
 
         copy: {
             foo: {
                 files: [{
                     expand: true,
-                    dest: 'public/dist',
-                    cwd: 'public/bower_components/font-awesome',
+                    dest: '<%= globalConfig.dist %>',
+                    cwd: '<%= bower.directory %>/font-awesome',
                     src: [
                         'fonts/*'
                     ]
                 }]
             }
         },
-        
+
         bower_concat: {
             all: {
-                dest: 'public/vendor/_bower.js',
-                cssDest: 'public/vendor/_bower.css',
+                dest: '<%= globalConfig.vendor %>/_bower.js',
+                cssDest: '<%= globalConfig.vendor %>/_bower.css',
             }
         },
 
         concat: {
             main: {
                 src: [
-                    'public/vendor/_bower.js',
-                    'public/scripts/*.js'
+                    '<%= globalConfig.vendor %>/_bower.js',
+                    '<%= globalConfig.src %>/scripts/app.js'
                 ],
-                dest: 'public/dist/js/production.js'
+                dest: '<%= globalConfig.dist %>/js/production.js'
             }
         },
 
         uglify: {
             build: {
-                src: 'public/dist/js/production.js',
-                dest: 'public/dist/js/production.min.js'
+                src: '<%= globalConfig.dist %>/js/production.js',
+                dest: '<%= globalConfig.dist %>/js/production.min.js'
             }
         },
 
         cssmin: {
             minify: {
-                src: ['public/vendor/_bower.css', 'public/css/*.css'],
-                dest: 'public/dist/css/production.min.css'
+                src: ['<%= globalConfig.vendor %>/_bower.css', 'public/css/*.css'],
+                dest: '<%= globalConfig.dist %>/css/production.min.css'
             }
         }
 
