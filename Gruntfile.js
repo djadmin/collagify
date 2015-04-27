@@ -3,6 +3,19 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        copy: {
+            foo: {
+                files: [{
+                    expand: true,
+                    dest: 'public/dist',
+                    cwd: 'public/bower_components/font-awesome',
+                    src: [
+                        'fonts/*'
+                    ]
+                }]
+            }
+        },
+        
         bower_concat: {
             all: {
                 dest: 'public/vendor/_bower.js',
@@ -16,27 +29,28 @@ module.exports = function(grunt) {
                     'public/vendor/_bower.js',
                     'public/scripts/*.js'
                 ],
-                dest: 'public/dist/production.js'
+                dest: 'public/dist/js/production.js'
             }
         },
 
         uglify: {
             build: {
-                src: 'public/dist/production.js',
-                dest: 'public/dist/production.min.js'
+                src: 'public/dist/js/production.js',
+                dest: 'public/dist/js/production.min.js'
             }
         },
 
         cssmin: {
-          minify: {
-            src: 'public/css/*.css',
-            dest: 'public/dist/production.min.css'
-          }
+            minify: {
+                src: ['public/vendor/_bower.css', 'public/css/*.css'],
+                dest: 'public/dist/css/production.min.css'
+            }
         }
 
     });
 
 
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.loadNpmTasks('grunt-bower-concat');
 
@@ -49,6 +63,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('default', [
+        'copy',
         'bower_concat',
         'concat',
         'uglify',
