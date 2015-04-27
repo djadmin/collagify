@@ -6,3 +6,12 @@ public/dest
 public/images/.DS_Store
 public/scripts/production.js
 public/dist/production.min.css
+public/dist/css/production.min.css
+public/dist/fonts/fontawesome-webfont.eot
+public/dist/fonts/fontawesome-webfont.svg
+public/dist/fonts/fontawesome-webfont.ttf
+public/dist/fonts/fontawesome-webfont.woff
+public/dist/fonts/fontawesome-webfont.woff2
+public/dist/fonts/FontAwesome.otf
+public/dist/js/production.js
+public/dist/js/production.min.js

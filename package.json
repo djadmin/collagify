@@ -4,7 +4,7 @@
     "description": "Make awesome collages with your photos in easy steps.",
     "main": "Gruntfile.js",
     "scripts": {
-        "postinstall": "bower install && echo postinstall time; ./node_modules/grunt-cli/bin/grunt setup"
+        "postinstall": "bower install; grunt setup"
     },
     "repository": {
         "type": "git",
@@ -20,7 +20,7 @@
     },
     "homepage": "https://github.com/djadmin/collagify",
     "dependencies": {
-        "bower": "1.2.8",
+        "bower": "1.3.8",
         "grunt": "0.4.2",
         "grunt-cli": "0.1.13",
         "express": "^4.12.3"
