@@ -1,1 +1,8 @@
-client/bower_components/
+public/bower_components/
+node_modules/
+public/vendor/
+public/test
+public/dest
+public/images/.DS_Store
+public/scripts/production.js
+public/dist/production.min.css

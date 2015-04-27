@@ -4,29 +4,39 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         bower_concat: {
-        	all: {
-        		dest: 'client/vendor/_bower.js',
-        		cssDest: 'client/vendor/_bower.css',
-        	}
+            all: {
+                dest: 'public/vendor/_bower.js',
+                cssDest: 'public/vendor/_bower.css',
+            }
         },
 
         concat: {
             main: {
                 src: [
-                    'client/vendor/_bower.js',
-                    'client/scripts/*.js'
+                    'public/vendor/_bower.js',
+                    'public/scripts/*.js'
                 ],
-                dest: 'client/scripts/production.js'
+                dest: 'public/dist/production.js'
             }
         },
 
         uglify: {
             build: {
-                src: 'client/scripts/production.js',
-                dest: 'client/scripts/production.min.js'
+                src: 'public/dist/production.js',
+                dest: 'public/dist/production.min.js'
             }
+        },
+
+        cssmin: {
+          minify: {
+            src: 'public/css/*.css',
+            dest: 'public/dist/production.min.css'
+          }
         }
+
     });
+
+
 
     grunt.loadNpmTasks('grunt-bower-concat');
 
@@ -34,5 +44,14 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['bower_concat', 'concat', 'uglify']);
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+    grunt.registerTask('default', [
+        'bower_concat',
+        'concat',
+        'uglify',
+        'cssmin'
+    ]);
 };

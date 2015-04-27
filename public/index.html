@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <title>
+        Collage App
+    </title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Scripts -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/fabric/dist/fabric.min.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <!-- // <script type="text/javascript" src="scripts/production.js"></script> -->
+</head>
+
+<body>
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="page-header">
+            
+                <div class="main-logo">
+                    <a href=""><img src="images/logo.png" class="logo"></a>
+                </div>
+                <div class="main-title">
+                    <h1>Collagify</h1>
+                    <p class="sub-title">
+                        Making awesome collages was never so easy !
+                    </p>
+                </div>
+        </div>
+        <div class="banner row">
+            <div class="workspace-tools">
+                <div class="tool"><a id="saveBtn" data-toggle="tooltip" data-placement="right" title="Download Canvas"><i class="fa fa-download fa-2x"></i></a></div>
+                <div class="tool"><a id="clearBtn" data-toggle="tooltip" data-placement="right" title="Clear Canvas"><i class="fa fa-eraser fa-2x"></i></a></div>
+            </div>
+            <div class="workspace-cont" id="workspace-cont" >
+                <canvas id="workspace" class="workspace" height="400">
+                    It seems your browser doesn't support HTML5 Canvas.
+                </canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="gallery container">
+                <div class="gallery-list" id="gallery-list">
+                </div>
+                <div class="gallery-upload">
+                    <div class="gallery-upload-area" id="uploadArea">
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Upload pic">
+                            <i class="fa fa-plus-circle fa-3x"></i>
+                        </a>
+                    </div>
+                    <!-- <input type="file" id="uploadBtn"/> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Made with <i class="fa fa-heart"></i> by <a href="http://twitter.com/dheerajhere" target="_blank">Dheeraj Joshi</a></p>
+        </div>
+    </footer>
+
+    <!-- Modal Starts-->
+    <div class="modal fade" id="clearConfirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog large">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title"> Confirm </h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to clear the Canvas ?
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Clear</button>
+            <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Modal Ends -->
+</body>
+
+</html>
