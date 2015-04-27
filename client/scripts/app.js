@@ -30,7 +30,10 @@ var app = (function() {
             title: 'Bird'
         }, {
             name: 'pic8.jpg',
-            title: 'Insect'
+            title: 'Flower'
+        }, {
+            name: 'pic9.jpg',
+            title: 'Tree'
         }];
 
         return {
@@ -43,7 +46,7 @@ var app = (function() {
         var data = getGalleryImages();
         var baseUrl = data && data.hasOwnProperty('baseUrl') ? data.baseUrl : "";
         var images = data && data.hasOwnProperty('images') ? data.images : [];
-        var count = 10 || images.length; //@change
+        var count = 9 || images.length; //@change
         var list = document.createElement('ul');
         for (var i = 0; i < count; i++) {
             var imgContainer = document.createElement('li');
@@ -145,8 +148,8 @@ var app = (function() {
                 angle: 0,
                 opacity: 1,
                  originX: 'left', originY: 'top',
-                 borderColor: 'blue',
-                 cornerColor: 'blue',
+                 borderColor: '#50A5ED',
+                 cornerColor: '#50A5ED',
                  cornerSize: 6,
                  transparentCorners: false
             });
@@ -204,7 +207,6 @@ var app = (function() {
             }
 
         var other = document.getElementsByClassName('upper-canvas')[0];
-        console.log(other);
         other.addEventListener('dragover', doDragOver);
         other.addEventListener('drop', doDrop);
 
