@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default', [
+    grunt.registerTask('setup', [
         'copy',
         'bower_concat',
         'concat',

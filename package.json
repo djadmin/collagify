@@ -4,7 +4,7 @@
   "description": "Make awesome collages with your photos in easy steps.",
   "main": "Gruntfile.js",
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install && grunt setup"
   },
   "repository": {
     "type": "git",
