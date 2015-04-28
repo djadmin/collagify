@@ -5,7 +5,8 @@ module.exports = function(grunt) {
     var globalConfig = {
         src: publicDir + '',
         dist: publicDir + '/dist',
-        vendor: publicDir + '/vendor'
+        vendor: publicDir + '/vendor',
+        specs: publicDir + '/spec'
     };
 
     grunt.initConfig({
@@ -44,6 +45,14 @@ module.exports = function(grunt) {
             }
         },
 
+        jasmine: {
+            src: "<%= globalConfig.src %>/scripts/app.js",
+            options: {
+                vendor: "<%= bower.directory %>/jquery/dist/jquery.min.js",
+                specs: "<%= globalConfig.specs %>/*-spec.js"
+            }
+        },
+
         uglify: {
             build: {
                 src: '<%= globalConfig.dist %>/js/production.js',
@@ -77,6 +86,7 @@ module.exports = function(grunt) {
         'copy',
         'bower_concat',
         'concat',
+        'jasmine',
         'uglify',
         'cssmin'
     ]);

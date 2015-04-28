@@ -1,11 +1,14 @@
-var canvas;
 var app = (function() {
 
+    var canvas;
 
+    var _this = {}; //functions to be exposed
+
+    _this.__testonly__ = {}; //functions to be tested
 
     function getGalleryImages() {
         // Mocking Data
-        var baseUrl = "./images/";
+        var baseUrl = "images/";
 
         var images = [{
             name: 'pic1.jpg',
@@ -42,6 +45,10 @@ var app = (function() {
         };
     }
 
+    /* test-code */
+    _this.__testonly__.getGalleryImages = getGalleryImages;
+    /* end-test-code */
+
     function constructGalleryImages() {
         var data = getGalleryImages();
         var baseUrl = data && data.hasOwnProperty('baseUrl') ? data.baseUrl : "";
@@ -69,6 +76,10 @@ var app = (function() {
         return list;
 
     }
+
+    /* test-code */
+    _this.__testonly__.constructGalleryImages = constructGalleryImages;
+    /* end-test-code */
 
     function loadGalleryImages() {
         var images = constructGalleryImages();
@@ -305,9 +316,9 @@ var app = (function() {
         bindEvents();
     }
 
-    return {
-        init: init
-    }
+    _this.init = init;
+
+    return _this;
 })();
 
 (function() {
