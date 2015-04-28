@@ -35,21 +35,32 @@ module.exports = function(grunt) {
             }
         },
 
+
+        jasmine: {
+            src: "<%= globalConfig.src %>/scripts/*.js",
+            options: {
+                vendor: "<%= bower.directory %>/jquery/dist/jquery.min.js",
+                specs: "<%= globalConfig.specs %>/*-spec.js"
+            }
+        },
+
+        strip_code: {
+            options: {
+                start_comment: "test-code",
+                end_comment: "end-test-code",
+            },
+            target: {
+                src: "<%= globalConfig.src %>/scripts/*.js"
+            }
+        },
+
         concat: {
             main: {
                 src: [
                     '<%= globalConfig.vendor %>/_bower.js',
-                    '<%= globalConfig.src %>/scripts/app.js'
+                    '<%= globalConfig.src %>/scripts/*.js'
                 ],
                 dest: '<%= globalConfig.dist %>/js/production.js'
-            }
-        },
-
-        jasmine: {
-            src: "<%= globalConfig.src %>/scripts/app.js",
-            options: {
-                vendor: "<%= bower.directory %>/jquery/dist/jquery.min.js",
-                specs: "<%= globalConfig.specs %>/*-spec.js"
             }
         },
 
@@ -82,11 +93,14 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
+    grunt.loadNpmTasks('grunt-strip-code');
+
     grunt.registerTask('setup', [
         'copy',
         'bower_concat',
-        'concat',
         'jasmine',
+        'strip_code',
+        'concat',
         'uglify',
         'cssmin'
     ]);
