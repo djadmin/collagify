@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         src: publicDir + '',
         dist: publicDir + '/dist',
         vendor: publicDir + '/vendor',
-        specs: 'test/spec'
+        test: 'test'
     };
 
     grunt.initConfig({
@@ -35,13 +35,16 @@ module.exports = function(grunt) {
             }
         },
 
-
         jasmine: {
             src: "<%= globalConfig.src %>/scripts/*.js",
             options: {
                 vendor: "<%= bower.directory %>/jquery/dist/jquery.min.js",
-                specs: "<%= globalConfig.specs %>/*-spec.js"
+                specs: "<%= globalConfig.test %>/unit/*.spec.js"
             }
+        },
+
+        jasmine_node: {
+            projectRoot: "<%= globalConfig.test %>/integration"
         },
 
         strip_code: {
@@ -95,10 +98,14 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-strip-code');
 
+    grunt.loadNpmTasks('grunt-jasmine-node');
+
+
     grunt.registerTask('setup', [
         'copy',
         'bower_concat',
         'jasmine',
+        'jasmin_node',
         'strip_code',
         'concat',
         'uglify',
