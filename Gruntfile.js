@@ -105,7 +105,7 @@ module.exports = function(grunt) {
         'copy',
         'bower_concat',
         'jasmine',
-        'jasmin_node',
+        'jasmine_node',
         'strip_code',
         'concat',
         'uglify',

@@ -20,14 +20,14 @@ describe('Collagify app', function() {
             })
             .getTitle(function(err, title) {
                 expect(err).toBeFalsy();
-                expect(title).toBe('Collagify');
+                expect(title).toBe('Collage App');
             })
             .getCssProperty('.main-title', 'color', function(err, color){
                 expect(err).toBeFalsy();
                 expect(color.parsed.hex).toBe('#fe6962');
             })
             .call(done);
-    }, 9999999);
+    },9999999);
 
     afterEach(function(done) {
         client.end(done);
