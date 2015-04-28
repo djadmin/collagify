@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         src: publicDir + '',
         dist: publicDir + '/dist',
         vendor: publicDir + '/vendor',
-        specs: publicDir + '/spec'
+        specs: 'test/spec'
     };
 
     grunt.initConfig({
