@@ -1,39 +1,39 @@
 {
-    "name": "Collagify",
-    "version": "1.0.0",
-    "description": "Make awesome collages with your photos in easy steps.",
-    "main": "Gruntfile.js",
-    "scripts": {
-        "postinstall": "bower install; grunt setup"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/djadmin/collagify.git"
-    },
-    "keywords": [
-        "Collage"
-    ],
-    "author": "Dheeraj Joshi",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/djadmin/collagify/issues"
-    },
-    "homepage": "https://github.com/djadmin/collagify",
-    "dependencies": {
-        "bower": "1.3.8",
-        "grunt": "0.4.2",
-        "grunt-cli": "0.1.13",
-        "express": "^4.12.3"
-    },
-    "devDependencies": {
-        "grunt-bower-concat": "^0.4.0",
-        "grunt-contrib-concat": "^0.5.1",
-        "grunt-contrib-uglify": "^0.9.1",
-        "grunt-contrib-jasmine": "^0.8.2",
-        "grunt-contrib-cssmin": "^0.12.2",
-        "grunt-contrib-copy": "^0.8.0",
-        "grunt-strip-code": "^0.1.2",
-        "grunt-jasmine-node": "^0.3.1",
-        "webdriverio": "^2.4.5"
-    }
+  "name": "Collagify",
+  "version": "1.0.0",
+  "description": "Make awesome collages with your photos in easy steps.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "postinstall": "bower install; grunt setup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djadmin/collagify.git"
+  },
+  "keywords": [
+    "Collage"
+  ],
+  "author": "Dheeraj Joshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djadmin/collagify/issues"
+  },
+  "homepage": "https://github.com/djadmin/collagify",
+  "dependencies": {
+    "bower": "1.7.5",
+    "grunt": "0.4.2",
+    "grunt-cli": "0.1.13",
+    "express": "^4.12.3"
+  },
+  "devDependencies": {
+    "grunt-bower-concat": "^0.4.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-jasmine": "^0.8.2",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-strip-code": "^0.1.2",
+    "grunt-jasmine-node": "^0.3.1",
+    "webdriverio": "^2.4.5"
+  }
 }
