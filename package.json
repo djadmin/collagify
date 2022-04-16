@@ -21,7 +21,7 @@
   "homepage": "https://github.com/djadmin/collagify",
   "dependencies": {
     "bower": "1.7.5",
-    "grunt": "0.4.2",
+    "grunt": "1.5.0",
     "grunt-cli": "0.1.13",
     "express": "^4.12.3"
   },
